@@ -1,0 +1,57 @@
+[includeIf "gitdir:~/Development/github.com/"]
+	path = ~/.config/git/github
+[includeIf "gitdir:~/.local/share/chezmoi/"]
+	path = ~/.config/git/github
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = "code --wait "
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[commit]
+	gpgsign = true
+	template = ~/.config/git/template.txt
+[push]
+	gpgsign = if-asked
+[gpg]
+	format = ssh
+[alias]
+	co = checkout
+	count = shortlog -sn
+	g = grep --break --heading --line-number
+	gi = grep --break --heading --line-number -i
+	changed = show --pretty=\"format:\" --name-only
+	fm = fetch-merge
+	pr = open-pr
+	please = push --force-with-lease
+	commend = commit --amend --no-edit
+	fpr = fetch-pr
+	lt = log --tags --decorate --simplify-by-decoration --oneline
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+[core]
+	editor = vim
+	compression = -1
+	autocrlf = input
+	whitespace = trailing-space,space-before-tab
+	precomposeunicode = true
+[apply]
+	whitespace = nowarn
+[help]
+	autocorrect = 1
+[grep]
+	extendRegexp = true
+	lineNumber = true
+[push]
+	default = simple
+[submodule]
+	fetchJobs = 4
+[log]
+	showSignature = false
